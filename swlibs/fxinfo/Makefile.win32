@@ -1,0 +1,41 @@
+# Win32 tests makefile for Glide3
+# This makefile MUST be processed by GNU make!!!
+#
+#  Copyright (c) 2004 - Borca Daniel
+#  Email : dborca@users.sourceforge.net
+#  Web   : http://www.geocities.com/dborca
+#
+
+#
+#  Available options:
+#
+#    Environment variables:
+#	FX_GLIDE_HW	build for the given ASIC (cvg).
+#			default = cvg
+#	CPU		optimize for the given processor.
+#			default = 6
+#
+#    Targets:
+#	<file.exe>	build a specific file
+#
+
+.SUFFIXES: .c .obj .exe
+
+FX_GLIDE_HW ?= cvg
+TOP = ../..
+CPU ?= 6
+
+CC = cl
+CFLAGS = -nologo -W3 -D__MSC__=1 -DNDEBUG -G$(CPU) -O2 -MT
+CFLAGS += -I$(TOP)/glide3x/$(FX_GLIDE_HW)/glide3/src -I$(TOP)/glide3x/$(FX_GLIDE_HW)/incsrc
+CFLAGS += -I$(TOP)/swlibs/fxmisc
+CFLAGS += -D__WIN32__ -DCVG
+
+LD = link
+LDFLAGS = -nologo -opt:WIN98 -machine:IX86
+LDLIBS = user32.lib gdi32.lib $(TOP)/glide3x/$(FX_GLIDE_HW)/lib/glide3x.lib
+
+.c.obj:
+	$(CC) -Fo$@ $(CFLAGS) -c $<
+fxinfo.exe: fxinfo.obj
+	$(LD) -out:$@ $(LDFLAGS) $^ $(LDLIBS)
