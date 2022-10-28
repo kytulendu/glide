@@ -13,7 +13,7 @@
 #
 #    Environment variables:
 #	FX_GLIDE_HW	build for the given ASIC (sst1, sst96, cvg, h3, h5).
-#			default = h5
+#			default = cvg
 #	H4=1		High speed Avenger/Napalm.
 #			target  = h3, h5
 #			default = no
@@ -32,7 +32,7 @@
 #			target  = cvg, h3, h5
 #			default = no
 #	USE_MMX=1	(see USE_3DNOW)
-#			target  = h5
+#			target  = cvg, h5
 #			default = no
 #	USE_SSE=1	(see USE_3DNOW)
 #			target  = h5
@@ -53,7 +53,7 @@
 .PHONY: all clean realclean
 
 export BUILD_NUMBER = 40404
-export FX_GLIDE_HW ?= h5
+export FX_GLIDE_HW ?= cvg
 
 ifeq ($(FX_GLIDE_HW),sst96)
 G3_DIR = sst1/glide3/src
