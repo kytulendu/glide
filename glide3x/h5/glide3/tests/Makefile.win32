@@ -16,7 +16,7 @@
 FX_GLIDE_HW     = h5
 FX_GLIDE_SWLIBS = swlibs
 FX_HW_PROJECTS  = glide3
-GLIDE_ROOT      = ..\..\..
+GLIDE_ROOT      = ..\..\..\..
 
 ##################################
 # build flags
@@ -106,11 +106,11 @@ TESTFILE_SRC =\
 TESTFILE_OBJ = $(TESTFILE_SRC:.c=.obj)
 
 INCS =\
-	-I$(GLIDE_ROOT)\$(FX_GLIDE_HW)\$(FX_HW_PROJECTS)\src\
-	-I$(GLIDE_ROOT)\$(FX_GLIDE_HW)\incsrc\
+	-I$(GLIDE_ROOT)\glide3x\$(FX_GLIDE_HW)\$(FX_HW_PROJECTS)\src\
+	-I$(GLIDE_ROOT)\glide3x\$(FX_GLIDE_HW)\incsrc\
 	-I$(GLIDE_ROOT)\$(FX_GLIDE_SWLIBS)\fxmisc
 
-GLIDE_LIB = $(GLIDE_ROOT)\$(FX_GLIDE_HW)\lib\$(FX_HW_PROJECTS)x.lib
+GLIDE_LIB = $(GLIDE_ROOT)\glide3x\$(FX_GLIDE_HW)\lib\$(FX_HW_PROJECTS)x.lib
 
 DEP_LIB = user32.lib gdi32.lib
 

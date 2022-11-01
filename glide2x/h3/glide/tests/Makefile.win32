@@ -24,18 +24,18 @@
 .SECONDARY: tlib.obj plib.obj
 
 FX_GLIDE_HW ?= h3
-TOP = ../../..
+TOP = ../../../..
 CPU ?= 6
 
 CC = cl
 CFLAGS = -nologo -W3 -WX -D__MSC__=1 -DNDEBUG -G$(CPU) -O2 -MT
-CFLAGS += -I$(TOP)/$(FX_GLIDE_HW)/glide/src -I$(TOP)/$(FX_GLIDE_HW)/incsrc
+CFLAGS += -I$(TOP)/glide2x/$(FX_GLIDE_HW)/glide/src -I$(TOP)/glide2x/$(FX_GLIDE_HW)/incsrc
 CFLAGS += -I$(TOP)/swlibs/fxmisc
 CFLAGS += -D__WIN32__ -DH3
 
 LD = link
 LDFLAGS = -nologo -opt:WIN98 -machine:IX86
-LDLIBS = user32.lib gdi32.lib $(TOP)/$(FX_GLIDE_HW)/lib/glide2x.lib
+LDLIBS = user32.lib gdi32.lib $(TOP)/glide2x/$(FX_GLIDE_HW)/lib/glide2x.lib
 
 .c.obj:
 	$(CC) -Fo$@ $(CFLAGS) -c $<

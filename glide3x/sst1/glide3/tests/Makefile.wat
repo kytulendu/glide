@@ -37,7 +37,7 @@ endif
 endif
 
 override FX_HW_BASE = sst1
-TOP = ../../..
+TOP = ../../../..
 
 # detect if running under unix by finding 'rm' in $PATH :
 ifeq ($(wildcard $(addsuffix /rm,$(subst :, ,$(PATH)))),)
@@ -52,7 +52,7 @@ endif
 
 CC = wcl386
 CFLAGS = -bt=dos -wx -zq
-INCPATH = -I$(TOP)/$(FX_HW_BASE)/glide3/src -I$(TOP)/$(FX_HW_BASE)/incsrc -I$(TOP)/$(FX_HW_BASE)/init
+INCPATH = -I$(TOP)/glide3x/$(FX_HW_BASE)/glide3/src -I$(TOP)/glide3x/$(FX_HW_BASE)/incsrc -I$(TOP)/glide3x/$(FX_HW_BASE)/init
 INCPATH += -I$(TOP)/swlibs/fxmisc
 CFLAGS += -D__DOS__ $(HWDEF)
 CFLAGS += -D__DOS32__
@@ -68,7 +68,7 @@ endif
 # pick either of causeway, dos4g, dos32a or stub32a as link target
 LDFLAGS = -zq -k16384 -l=dos32a
 
-LDLIBS = $(TOP)/$(FX_HW_BASE)/lib/$(FX_GLIDE_HW)/glide3x.lib
+LDLIBS = $(TOP)/glide3x/$(FX_HW_BASE)/lib/$(FX_GLIDE_HW)/glide3x.lib
 
 .c.obj:
 	$(CC) $(CFLAGS) -fo=$@ -c $<

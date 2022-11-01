@@ -44,7 +44,7 @@ GLIDE_RES = glide.res
 GLIDE_DLL = glide2x.dll
 GLIDE_IMP = glide2x.lib
 
-FX_GLIDE_SW = ../../../swlibs
+FX_GLIDE_SW = ../../../../swlibs
 GLIDE_LIBDIR = ../../lib
 
 ###############################################################################

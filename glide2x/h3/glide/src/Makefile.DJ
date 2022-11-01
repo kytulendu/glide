@@ -40,7 +40,7 @@ GLIDE_LIB = libglide2x.a
 GLIDE_DXE = glide2x.dxe
 GLIDE_IMP = libglide2i.a
 
-FX_GLIDE_SW = ../../../swlibs
+FX_GLIDE_SW = ../../../../swlibs
 GLIDE_LIBDIR = ../../lib
 
 ###############################################################################
