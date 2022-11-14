@@ -42,11 +42,11 @@ grGetStringProc         pgrGetString;
 
 int main(int argc, char **argv)
 {
-    char *hardware;
-    char *renderer;
-    char *vendor;
-    char *version;
-    char *extensions;
+    const char *hardware;
+    const char *renderer;
+    const char *vendor;
+    const char *version;
+    const char *extensions;
 
     FxI32 num_board = 0;
     FxI32 num_fbi = 0;
