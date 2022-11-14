@@ -99,6 +99,13 @@ int main(int argc, char **argv)
     /* Initialize Glide */
     pgrGlideInit();
 
+    /* Number of board(s) */
+    if (!pgrGet(GR_NUM_BOARDS, sizeof(num_board), &num_board))
+    {
+        printf("No 3Dfx Voodoo board detected!\n");
+        return 1;
+    }
+
     /* Get Voodoo board type */
     hardware = pgrGetString(GR_HARDWARE);
     /* Get glide driver vender */
@@ -116,8 +123,6 @@ int main(int argc, char **argv)
     printf("Glide version string: %s\n", version);
     printf("Glide extensions: \n%s\n", extensions);
 
-    /* Number of board(s) */
-    pgrGet(GR_NUM_BOARDS, sizeof(num_board), &num_board);
     /* Frame Buffer Interface(s) */
     pgrGet(GR_NUM_FB, sizeof(num_fbi), &num_fbi);
     /* FBI Revision */
