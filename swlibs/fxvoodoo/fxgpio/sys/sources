@@ -1,0 +1,11 @@
+TARGETNAME=fxgpio
+TARGETPATH=obj
+TARGETTYPE=DRIVER
+
+INCLUDES=..\..\..\fxmisc
+USER_C_FLAGS = /Oi /FAsc /Fa$O\\
+
+SOURCES=createclose.c \
+        fxgpio.c \
+        ioctrl.c \
+        fxgpio.rc

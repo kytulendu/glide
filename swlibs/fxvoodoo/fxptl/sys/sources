@@ -1,0 +1,12 @@
+TARGETNAME=fxptl
+TARGETPATH=obj
+TARGETTYPE=DRIVER
+
+INCLUDES=..\..\..\fxmisc
+USER_C_FLAGS = /Oi /FAsc /Fa$O\\
+
+SOURCES=createclose.c \
+        memmap.c \
+        ioctrl.c \
+        msr.c \
+        fxptl.rc

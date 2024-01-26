@@ -1,0 +1,15 @@
+/*
+ * 3Dfx Voodoo/Voodoo2 3D Accelerator Board Driver
+ *
+ * Main driver resources
+ */
+
+#include <windows.h>
+#include <ntverp.h>
+
+#define VER_FILETYPE                VFT_DRV
+#define VER_FILESUBTYPE             VFT2_DRV_SYSTEM
+#define VER_FILEDESCRIPTION_STR     "3Dfx Voodoo port I/O driver"
+#define VER_INTERNALNAME_STR        "fxvoodoo.sys"
+
+#include "common.ver"

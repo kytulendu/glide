@@ -46,7 +46,11 @@ typedef struct {
   ULONG            BusNumber;     // Bus number
   PHYSICAL_ADDRESS BusAddress;    // Bus-relative address
   ULONG            AddressSpace;  // 0 is memory, 1 is I/O
+#if defined(_WIN64)
+  SIZE_T           Length;        // Length of section to map
+#else
   ULONG            Length;        // Length of section to map
+#endif
 } PHYSICAL_MEMORY_INFO, *PPHYSICAL_MEMORY_INFO;
 
 #define IOCTL_MAPMEM_MAP_USER_PHYSICAL_MEMORY   CTL_CODE(FILE_DEVICE_MAPMEM ,    \

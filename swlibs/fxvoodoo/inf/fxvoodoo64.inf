@@ -1,0 +1,133 @@
+; 3Dfx Voodoo and Voodoo2 3D Accelerator driver for Windows NT x64
+
+[Version]
+Signature="$Windows NT$"
+Class=Media
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider=%Rrawr%
+DriverVer=27/01/2024,5.0.2024.0127
+
+; Manufacturers
+;----------------------------------------
+[Manufacturer]
+%3Dfx% = 3Dfx,NTamd64
+
+; Driver sections
+;----------------------------------------
+[3Dfx.NTamd64]
+%voodoo.DeviceDesc%=voodoo,   PCI\VEN_121A&DEV_0001
+%voodoo2.DeviceDesc%=voodoo2, PCI\VEN_121A&DEV_0002
+
+; Disk & Directory sections
+;----------------------------------------
+[DestinationDirs]
+DefaultDestDir      = 11                ; Windows\System32
+fxvoodoo.Miniport   = 12                ; %SystemRoot%\System32\drivers
+;fxvoodoo.GlideWOW64 = 10,SysWOW64       ; %SystemRoot%\SysWOW64
+fxvoodoo.GlideWOW64 = 16425             ; %SystemRoot%\SysWOW64
+fxvoodooInf.Copy    = 17                ; %SystemRoot%\inf
+
+; Install sections
+;----------------------------------------
+
+; 3Dfx Voodoo 3D Accelerator
+[voodoo]
+CopyFiles = fxvoodoo.Miniport,fxvoodoo.DisplayWOW64,fxvoodoo.AppsWOW64,fxvoodooInf.Copy
+AddReg    = voodoo.AddReg
+
+; 3Dfx Voodoo2 3D Accelerator
+[voodoo2]
+CopyFiles = fxvoodoo.Miniport,fxvoodoo.DisplayWOW64,fxvoodoo.AppsWOW64,fxvoodooInf.Copy
+AddReg    = voodoo2.AddReg
+
+; Uninstall section
+;----------------------------------------
+[voodoo.Uninstall]
+DelFiles   = fxvoodoo.Miniport,fxvoodoo.DisplayWOW64,fxvoodoo.AppsWOW64,fxvoodooInf.Copy
+DelReg     = voodoo.AddReg
+DelService = fxvoodoo
+
+[voodoo2.Uninstall]
+DelFiles   = fxvoodoo.Miniport,fxvoodoo.DisplayWOW64,fxvoodoo.AppsWOW64,fxvoodooInf.Copy
+DelReg     = voodoo2.AddReg
+DelService = fxvoodoo
+
+[fxvoodoo.Miniport]
+fxvoodoo64.sys
+
+[fxvoodoo.DisplayWOW64]
+3dfxspl2.dll
+3dfxspl3.dll
+3dfxvgl.dll
+glide2x.dll
+glide3x.dll
+
+[fxvoodoo.AppsWOW64]
+fxinfo.exe
+
+[fxvoodooInf.Copy]
+fxvoodoo.inf
+
+[voodoo.Services]
+AddService=fxvoodoo,0x00000002,fxvoodoo.AddService
+
+[voodoo2.Services]
+AddService=fxvoodoo,0x00000002,fxvoodoo.AddService
+
+[fxvoodoo.AddService]
+DisplayName    = %fxvoodoo.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 2                  ; SERVICE_AUTO_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\fxvoodoo64.sys
+LoadOrderGroup = "Extended Base"
+
+[voodoo.AddReg]
+HKLM,"Software\Wow6432Node\3Dfx Interactive"
+HKLM,"Software\Wow6432Node\3Dfx Interactive\Voodoo Graphics","SST_GAMMAR",,"0x3fb9999a"
+HKLM,"Software\Wow6432Node\3Dfx Interactive\Voodoo Graphics","SST_GAMMAG",,"0x3fb9999a"
+HKLM,"Software\Wow6432Node\3Dfx Interactive\Voodoo Graphics","SST_GAMMAB",,"0x3fb9999a"
+HKLM,"Software\Wow6432Node\3Dfx Interactive\Voodoo Graphics","REFRESH_512x385",,"0x00000048"
+HKLM,"Software\Wow6432Node\3Dfx Interactive\Voodoo Graphics","REFRESH_640x400",,"0x0000003c"
+HKLM,"Software\Wow6432Node\3Dfx Interactive\Voodoo Graphics","REFRESH_640x480",,"0x0000003c"
+HKLM,"Software\Wow6432Node\3Dfx Interactive\Voodoo Graphics","REFRESH_800x600",,"0x0000003c"
+HKLM,"SoftWare\Microsoft\Windows\CurrentVersion\Uninstall\3Dfx Interactive Voodoo",,,
+HKLM,"SoftWare\Microsoft\Windows\CurrentVersion\Uninstall\3Dfx Interactive Voodoo","DisplayName",,"3Dfx Voodoo Display Driver"
+HKLM,"SoftWare\Microsoft\Windows\CurrentVersion\Uninstall\3Dfx Interactive Voodoo","UninstallString",,"%11%\rundll32.exe setupapi.dll,InstallHinfSection voodoo.Uninstall 132 %17%\fxvoodoo.inf"
+
+[voodoo2.AddReg]
+HKLM,"Software\Wow6432Node\3Dfx Interactive"
+HKLM,"Software\Wow6432Node\3Dfx Interactive\Voodoo2\Glide","SSTV2_RGAMMA",,"1.30"
+HKLM,"Software\Wow6432Node\3Dfx Interactive\Voodoo2\Glide","SSTV2_GGAMMA",,"1.30"
+HKLM,"Software\Wow6432Node\3Dfx Interactive\Voodoo2\Glide","SSTV2_BGAMMA",,"1.30"
+HKLM,"Software\Wow6432Node\3Dfx Interactive\Voodoo2\Glide","SSTV2_REFRESH_512x384",,"60"
+HKLM,"Software\Wow6432Node\3Dfx Interactive\Voodoo2\Glide","SSTV2_REFRESH_640x400",,"60"
+HKLM,"Software\Wow6432Node\3Dfx Interactive\Voodoo2\Glide","SSTV2_REFRESH_640x480",,"60"
+HKLM,"Software\Wow6432Node\3Dfx Interactive\Voodoo2\Glide","SSTV2_REFRESH_800x600",,"60"
+HKLM,"Software\Wow6432Node\3Dfx Interactive\Voodoo2\Glide","SSTV2_REFRESH_1024x768",,"60"
+HKLM,"SoftWare\Microsoft\Windows\CurrentVersion\Uninstall\3Dfx Interactive Voodoo2",,,
+HKLM,"SoftWare\Microsoft\Windows\CurrentVersion\Uninstall\3Dfx Interactive Voodoo2","DisplayName",,"3Dfx Voodoo2 Display Driver"
+HKLM,"SoftWare\Microsoft\Windows\CurrentVersion\Uninstall\3Dfx Interactive Voodoo2","UninstallString",,"%11%\rundll32.exe setupapi.dll,InstallHinfSection voodoo2.Uninstall 132 %17%\fxvoodoo.inf"
+
+[SourceDisksNames.amd64]
+1 = %DiskId1%
+
+[SourceDisksFiles.amd64]
+3dfxspl2.dll = 1
+3dfxspl3.dll = 1
+3dfxvgl.dll  = 1
+fxinfo.exe   = 1
+fxvoodoo64.sys = 1
+glide2x.dll  = 1
+glide3x.dll  = 1
+fxvoodoo64.inf  = 1
+
+; User visible strings
+;----------------------------------------
+[Strings]
+voodoo.DeviceDesc="3Dfx Voodoo 3D Accelerator"
+voodoo2.DeviceDesc="3Dfx Voodoo2 3D Accelerator"
+fxvoodoo.SvcDesc="3Dfx Voodoo Driver"
+DiskId1="3Dfx Voodoo Install disk"
+3Dfx="3Dfx Interactive, Inc."
+Rrawr="Khralkatorrix"
