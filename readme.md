@@ -16,6 +16,8 @@ then add nasm to your path (you will need to manually copy mingw32-make.exe to m
 Open `MinGW Command Prompt` and run `C:\Program Files\Microsoft Visual Studio\VC98\Bin\VCVARS32.BAT`
 to set MSVC6 path, then change directory to where the repository is, then type `build`.
 
+OpenGL support is from [MesaFX](https://github.com/sezero/MesaFX-6.2)
+
 Windows 98 DDK and Windows 2000/XP/2003 DDK is needed to build fxmemmap and fxvoodoo.
 
 ### TODO
